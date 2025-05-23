@@ -10,8 +10,8 @@ std::vector<double> make_stats(std::vector<int> & percolant_indexes, std::vector
 int count(std::vector<std::vector<int>> const & matrix, int const L, int const index_to_count);
 
 int main(void){
-    int L = 30;
-    double p = 0.65;
+    int L = 13;
+    double p = 0.7;
     std::vector<std::vector<int>> id_matrix(L, std::vector<int>(L, 0));
     std::mt19937 gen(1);                                // fixed seed = 1
     std::uniform_real_distribution<> dis(0.0, 1.0);     // uniform distribution in 0-1
@@ -66,12 +66,13 @@ int main(void){
     //print_matrix(id_matrix, L);
     std::vector<int> result = check_if_percolant(id_matrix, L);
     if(result[0] == -1){
+        std::cout << result[0] << "\t";
         std::vector<double> percolant_size_stats = make_stats(result, id_matrix, L);
-        std::cout << result[0] << "\t" << percolant_size_stats[0] << "\t" << percolant_size_stats[1] << "\n";
+        std::cout <<  percolant_size_stats[0] << "\t" << percolant_size_stats[1] << "\n";
     } else {
         std::cout << result[0] << "\t" << result[0] << "\t" << result[0] << "\n";
-    } 
-    return 0;
+    }
+    return 0;   
 }
 
 std::vector<std::vector<int>> merge_clusters(std::vector<std::vector<int>> & matrix, int const L, int const id_toe, int const id_tor){
@@ -83,7 +84,6 @@ std::vector<std::vector<int>> merge_clusters(std::vector<std::vector<int>> & mat
         }
     }
     return matrix;
-
 }
 
 int print_matrix(std::vector<std::vector<int>> const & matrix, int const L){
@@ -93,7 +93,6 @@ int print_matrix(std::vector<std::vector<int>> const & matrix, int const L){
         }
     }
     return 1;
-
 }
 
 std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix, int const L){
@@ -102,7 +101,7 @@ std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix
     for(int ii0 = 0; ii0 < L; ++ii0) {
         for(int iif = 0; iif < L; ++iif) {
             is_unique = 1;
-            if (matrix[ii0][0]==matrix[iif][L-1]){
+            if ((matrix[ii0][0]==matrix[iif][L-1])&&(matrix[ii0][0]!=0)){
                 results[0] = -1;
                 for (auto x: results){
                     if (x==matrix[ii0][0]){
@@ -111,16 +110,14 @@ std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix
                 }
                 if (is_unique==1){
                     results.push_back(matrix[ii0][0]);
-                } 
-                
-                
+                }
             } 
         }
     }
     for(int jj0 = 0; jj0 < L; ++jj0) {
         for(int jjf = 0; jjf < L; ++jjf) {
             is_unique = 1;
-            if (matrix[0][jj0]==matrix[L-1][jjf]){
+            if ((matrix[0][jj0]==matrix[L-1][jjf])&&(matrix[0][jj0]!=0)){
                 results[0] = -1;
                 for (auto x: results){
                     if (x==matrix[0][jj0]){
@@ -135,7 +132,6 @@ std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix
                                                                             
     }
     return results;
-    
 }
 
 std::vector<double> make_stats(std::vector<int> & percolant_indexes, std::vector<std::vector<int>> const & matrix, int const L){
@@ -145,7 +141,6 @@ std::vector<double> make_stats(std::vector<int> & percolant_indexes, std::vector
     for (auto x: percolant_indexes){
         element_sizes.push_back(count(matrix, L, x));
     }
-    
     int total_mean = 0, total_std = 0;
     for (auto x: element_sizes){
         total_mean += x;
@@ -171,14 +166,7 @@ int count(std::vector<std::vector<int>> const & matrix, int const L, int const i
         }
     }
     return n_elements;
-} 
-
-
-
-    
-    
-    
-    
+}     
 /*  DONE Crear arreglo LxL Matriz probabilidades
     DONE Rellenar arreglo con numeros entre 0 y 1 
     DONE Indicando si está lleno
