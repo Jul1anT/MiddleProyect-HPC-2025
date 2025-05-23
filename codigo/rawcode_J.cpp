@@ -3,7 +3,7 @@
 #include <random>
 #include <cmath>
 
-std::vector<std::vector<int>>  merge_clusters(std::vector<std::vector<int>> & matrix, int const L, int const id_toe, int const id_tor);
+std::vector<std::vector<int>> merge_clusters(std::vector<std::vector<int>> & matrix, int const L, int const id_toe, int const id_tor);
 int print_matrix(std::vector<std::vector<int>> const & matrix, int const L);
 std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix, int const L);
 std::vector<double> make_stats(std::vector<int> & percolant_indexes, std::vector<std::vector<int>> const & matrix, int const L);
@@ -67,7 +67,6 @@ int main(void){
     std::vector<int> result = check_if_percolant(id_matrix, L);
     if(result[0] == -1){
         std::vector<double> percolant_size_stats = make_stats(result, id_matrix, L);
-
         std::cout << result[0] << "\t" << percolant_size_stats[0] << "\t" << percolant_size_stats[1] << "\n";
     } else {
         std::cout << result[0] << "\t" << result[0] << "\t" << result[0] << "\n";
@@ -75,7 +74,7 @@ int main(void){
     return 0;
 }
 
-std::vector<std::vector<int>>  merge_clusters(std::vector<std::vector<int>> & matrix, int const L, int const id_toe, int const id_tor){
+std::vector<std::vector<int>> merge_clusters(std::vector<std::vector<int>> & matrix, int const L, int const id_toe, int const id_tor){
     for(int ii = 0; ii < L; ++ii) {
         for(int jj = 0; jj < L; ++jj) {
             if (matrix[ii][jj]== id_toe){
@@ -103,11 +102,10 @@ std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix
     for(int ii0 = 0; ii0 < L; ++ii0) {
         for(int iif = 0; iif < L; ++iif) {
             is_unique = 1;
-            if (matrix[ii0][0]==matrix[iif][L]){
+            if (matrix[ii0][0]==matrix[iif][L-1]){
                 results[0] = -1;
                 for (auto x: results){
                     if (x==matrix[ii0][0]){
-                        
                         is_unique =  0;
                     }
                 }
@@ -121,16 +119,8 @@ std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix
     }
     for(int jj0 = 0; jj0 < L; ++jj0) {
         for(int jjf = 0; jjf < L; ++jjf) {
-            if (matrix[0][jj0]==matrix[L][jjf]){
-                for (auto x: results){
-                    if (x!=matrix[0][jj0]){
-                        results[0] = -1;
-                        results.push_back(matrix[0][jj0]);
-                    }
-                }
-            } 
             is_unique = 1;
-            if (matrix[0][jj0]==matrix[L][jjf]){
+            if (matrix[0][jj0]==matrix[L-1][jjf]){
                 results[0] = -1;
                 for (auto x: results){
                     if (x==matrix[0][jj0]){
