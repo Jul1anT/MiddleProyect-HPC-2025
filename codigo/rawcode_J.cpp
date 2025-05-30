@@ -63,15 +63,15 @@ int main(void){
             } 
         }
     }
-    //print_matrix(id_matrix, L);
-    std::vector<int> result = check_if_percolant(id_matrix, L);
+    print_matrix(id_matrix, L);
+    /* std::vector<int> result = check_if_percolant(id_matrix, L);
     if(result[0] == -1){
         std::cout << result[0] << "\t";
         std::vector<double> percolant_size_stats = make_stats(result, id_matrix, L);
         std::cout <<  percolant_size_stats[0] << "\t" << percolant_size_stats[1] << "\n";
     } else {
         std::cout << result[0] << "\t" << result[0] << "\t" << result[0] << "\n";
-    }
+    }*/
     return 0;   
 }
 
@@ -79,7 +79,7 @@ std::vector<std::vector<int>> merge_clusters(std::vector<std::vector<int>> & mat
     for(int ii = 0; ii < L; ++ii) {
         for(int jj = 0; jj < L; ++jj) {
             if (matrix[ii][jj]== id_toe){
-                matrix[ii][jj]== id_tor;
+                matrix[ii][jj]= id_tor;
             }
         }
     }
@@ -178,3 +178,5 @@ int count(std::vector<std::vector<int>> const & matrix, int const L, int const i
     DONE Contar el numero de elementos de todos los clusters percolantes
     DONE sacar estadisticas (mean size and standard deviation)
 */
+// nohup stress -c 1 &
+// tmux 
