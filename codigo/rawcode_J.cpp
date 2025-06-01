@@ -9,69 +9,79 @@ std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix
 std::vector<double> make_stats(std::vector<int> & percolant_indexes, std::vector<std::vector<int>> const & matrix, int const L);
 int count(std::vector<std::vector<int>> const & matrix, int const L, int const index_to_count);
 
-int main(void){
-    int L = 13;
-    double p = 0.7;
+int main(int argc, char **argv){
+    int const L = atoi(argv[1]);
+    double const p = atof(argv[2]);
     std::vector<std::vector<int>> id_matrix(L, std::vector<int>(L, 0));
     std::mt19937 gen(1);                                // fixed seed = 1
     std::uniform_real_distribution<> dis(0.0, 1.0);     // uniform distribution in 0-1
+
+    // Fill elements in matrix with 1 with probability p
     for(int ii = 0; ii < L; ++ii) {
         for(int jj = 0; jj < L; ++jj) {
             if(dis(gen)<=p){
-                id_matrix[ii][jj]  = 1;                  // fill elements in matrix with 1 with probability p
-            }
+                id_matrix[ii][jj]  = 1;                  
+            }            
         }
     }
-    
+
     // Implementation of Hoshen-Kopelman Algorithm
     int id_label = 2;
-    for(int ii = 0; ii < L; ++ii) {
-        for(int jj = 0; jj < L; ++jj) {
-            if (ii==0){
-                if (jj==0){
-                    if (id_matrix[ii][jj]==1){
-                        id_matrix[ii][jj]=id_label;
-                    }
-                } else if (id_matrix[ii][jj]!=0){
-                    if(id_matrix[ii][jj-1]!=0){
-                        id_matrix[ii][jj] = id_matrix[ii][jj-1];
-                    } else{
-                        ++id_label;
-                        id_matrix[ii][jj] = id_label;           // if [0][0] is empty, the first label is 3. If [0][0] is full, the first label is 2
-                    }
-                }
-            } else if (jj==0){
-                if(id_matrix[ii-1][jj]!=0){
-                    id_matrix[ii][jj] = id_matrix[ii-1][jj];
-                } else {
-                    ++id_label;
-                    id_matrix[ii][jj] = id_label;
-                }
-            } else if (id_matrix[ii][jj]!=0){
-                if ((id_matrix[ii-1][jj]!=0)&&(id_matrix[ii][jj-1]!=0)){
-                    merge_clusters(id_matrix, L, id_matrix[ii][jj-1], id_matrix[ii-1][jj]); // gives priority to 'last ii'
-                    id_matrix[ii][jj] = id_matrix[ii-1][jj];  
-                } else if(id_matrix[ii-1][jj]==0){
-                    id_matrix[ii][jj] = id_matrix[ii][jj-1];
-                } else if(id_matrix[ii][jj-1]==0){
-                    id_matrix[ii][jj] = id_matrix[ii-1][jj];
-                } else {
-                    ++id_label;
-                    id_matrix[ii][jj] = id_label;
-                }
-
-            } 
-        }
+    if (id_matrix[0][0]!=0){
+        id_matrix[0][0] = id_label;
     }
-    print_matrix(id_matrix, L);
-    /* std::vector<int> result = check_if_percolant(id_matrix, L);
+    for(int jj = 1; jj < L; jj++){
+        if (id_matrix[0][jj]!=0){
+            if (id_matrix[0][jj-1]!=0){
+                id_matrix[0][jj] = id_matrix[0][jj-1];
+            } else{
+                id_label++;
+                id_matrix[0][jj] = id_label;
+            }
+        }
+    } 
+    for(int ii = 1; ii < L; ii++){
+        for(int jj = 0; jj < L; jj++){
+            if (id_matrix[ii][jj]!=0){
+                if (jj==0){
+                    if (id_matrix[ii-1][0]!=0){
+                        id_matrix[ii][0] = id_matrix[ii-1][0];
+                    } else{
+                        id_label++;
+                        id_matrix[ii][0] = id_label;
+                    }
+                } else{
+                    if ((id_matrix[ii-1][jj]==0)&&(id_matrix[ii][jj-1]==0)){
+                        id_label++;
+                        id_matrix[ii][jj] = id_label;
+                    } else if ((id_matrix[ii-1][jj]==0)&&(id_matrix[ii][jj-1]!=0)){
+                        id_matrix[ii][jj] = id_matrix[ii][jj-1];
+                    } else if ((id_matrix[ii-1][jj]!=0)&&(id_matrix[ii][jj-1]==0)){
+                        id_matrix[ii][jj] = id_matrix[ii-1][jj];
+                    } else if ((id_matrix[ii-1][jj]!=0)&&(id_matrix[ii][jj-1]!=0)){
+                        merge_clusters(id_matrix, L, id_matrix[ii][jj-1], id_matrix[ii-1][jj]); // gives priority to 'last ii'
+                        id_matrix[ii][jj] = id_matrix[ii-1][jj];
+                    } 
+                } 
+            } 
+        } 
+    } 
+
+    //print_matrix(id_matrix, L);
+
+    std::vector<int> result = check_if_percolant(id_matrix, L); // si no es percolante, devuelve un vector de 1 elemento con entrada 0
+                                                                // si es percolante, devuelve un vector con primera entrada -1 y los demas elementos son los indices
+                                                                // (no repetidos) de los cluster que son percolantes.
     if(result[0] == -1){
         std::cout << result[0] << "\t";
         std::vector<double> percolant_size_stats = make_stats(result, id_matrix, L);
         std::cout <<  percolant_size_stats[0] << "\t" << percolant_size_stats[1] << "\n";
     } else {
         std::cout << result[0] << "\t" << result[0] << "\t" << result[0] << "\n";
-    }*/
+    }
+
+    // Imprime -1 TamanhoPromedio DesviacionEstandar si el arreglo es percolante
+    // Imprime  0         0                0          si el arreglo no es percolante
     return 0;   
 }
 
@@ -135,20 +145,21 @@ std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix
 }
 
 std::vector<double> make_stats(std::vector<int> & percolant_indexes, std::vector<std::vector<int>> const & matrix, int const L){
-    percolant_indexes.erase(percolant_indexes.begin());
+    percolant_indexes.erase(percolant_indexes.begin()); // borra el primer elemento que solo dice si es o no percolante (se asume que si entra aqui lo es)
     std::vector<int> element_sizes;
     std::vector<double> stats(2,0);
     for (auto x: percolant_indexes){
-        element_sizes.push_back(count(matrix, L, x));
+        element_sizes.push_back(count(matrix, L, x));  // para cada indice que es percolante, cuente cuantos elementos en todo el arreglo tiene cada indice
     }
     int total_mean = 0, total_std = 0;
-    for (auto x: element_sizes){
+    for (auto x: element_sizes){                        // calcula promedio
         total_mean += x;
     }
     double partial =  (1.0*total_mean)/element_sizes.size();
-    stats[0] = partial;
-    for (auto x: element_sizes){
-        x = std::pow(x-stats[0] ,2);
+    stats[0] = partial;                                 
+    
+    for (auto x: element_sizes){                        // calcula desviacion
+        x = std::pow(x-stats[0] ,2);                    // suma cuadratica de diferencias
         total_std += x; 
     }
     partial = (1.0*total_std)/element_sizes.size();
