@@ -10,18 +10,46 @@ void print_matrix(std::vector<std::vector<int>> const & matrix, int const L);
 std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix, int const L);
 int count(std::vector<std::vector<int>> const & matrix, int const L, int const index_to_count);
 void print_sizes(std::vector<std::vector<int>> const & matrix, int const L);
+std::vector<int> cluster_sizes(std::vector<std::vector<int>> const & matrix, int const L);
 
 int main(int argc, char **argv){
     int const L = atoi(argv[1]);
     double const p = atof(argv[2]);
     std::random_device rd;
     std::mt19937 gen(rd());                                // Random seed from rd
+    double sum = 0.0, n = 0.0, desv = 0.0;
+    std::vector<std::vector<int>> sizes;                   // Vector que guardará los tamaños de los clusters percolantes sobre el total de iteraciones
 
-    // Implementation of Hoshen-Kopelman Algorithm
-    auto id_matrix = Hoshen_Kopelman(fill_matrix(L, p, gen), L);  // Toma la matriz que se llenó en fill_matrix y coloca los id 
+    for(int i = 1; i < 11; i++){
+        auto id_matrix = Hoshen_Kopelman(fill_matrix(L, p, gen), L);  // Toma la matriz que se llenó en fill_matrix y coloca los id 
 
-    //print_matrix(id_matrix, L); // Descomentar esta línea y comentar la siguiente si se quiere visualizar la matriz
-    print_sizes(id_matrix, L);    // Imprime el tamaño de cada cluster percolante (si hay)
+        //print_matrix(id_matrix, L); // Descomentar esta línea y comentar las siguientes si se quiere visualizar la matriz
+        std::cout << i << "\t";
+        print_sizes(id_matrix, L);    // Imprime el tamaño de cada cluster percolante (si hay)
+        sizes.push_back(cluster_sizes(id_matrix, L));
+    }
+
+    std::cout << "Los tamaños son: ";
+    for(auto j : sizes){
+        for(auto k : j)
+            std::cout << k << " ";
+    }
+    
+    for(auto j : sizes){
+        for(auto k : j){
+            sum += k;
+            if(k =! 0)
+                n++;
+        }
+    }
+    std::cout << "\n" << "El tamaño promedio es: " << sum/n << "\n";
+
+    for(auto j : sizes){
+        for(auto k : j){
+            desv += std::pow((k - sum/n), 2);
+        }
+    }
+    std::cout << "La desviación estándar es: " << sqrt(desv/n) << "\n";
 
     return 0;   
 }
@@ -109,7 +137,7 @@ std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix
         for(int iif = 0; iif < L; ++iif) {
             is_unique = 1;
             if ((matrix[ii0][0]==matrix[iif][L-1])&&(matrix[ii0][0]!=0)){
-                results[0] = -1;
+                results[0] = 1;
                 for (auto x: results){
                     if (x==matrix[ii0][0]){
                         is_unique =  0;
@@ -125,7 +153,7 @@ std::vector<int> check_if_percolant(std::vector<std::vector<int>> const & matrix
         for(int jjf = 0; jjf < L; ++jjf) {
             is_unique = 1;
             if ((matrix[0][jj0]==matrix[L-1][jjf])&&(matrix[0][jj0]!=0)){
-                results[0] = -1;
+                results[0] = 1;
                 for (auto x: results){
                     if (x==matrix[0][jj0]){
                         is_unique =  0;
@@ -163,9 +191,20 @@ void print_sizes(std::vector<std::vector<int>> const & matrix, int const L){
     for (auto x: result){
         element_sizes.push_back(count(matrix, L, x));  // para cada indice que es percolante, cuente cuantos elementos en todo el arreglo tiene cada indice
     }
-    for (int i = 0; i < element_sizes.size(); i++){
-        std::cout << element_sizes[i] << "\n";
+    for (auto i : element_sizes){
+        std::cout << i << "\t";
     }
+    std::cout << "\n";
+}
+
+std::vector<int> cluster_sizes(std::vector<std::vector<int>> const & matrix, int const L){
+    auto result = check_if_percolant(matrix, L);                                                   
+    result.erase(result.begin()); 
+    std::vector<int> element_sizes;
+    for (auto x: result){
+        element_sizes.push_back(count(matrix, L, x)); 
+    }
+    return element_sizes;
 }
 /*  DONE Crear arreglo LxL Matriz probabilidades
     DONE Rellenar arreglo con numeros entre 0 y 1 
