@@ -38,7 +38,7 @@ int main(int argc, char **argv){
     for(auto j : sizes){
         for(auto k : j){
             sum += k;
-            if(k =! 0)
+            if(k != 0)
                 n++;
         }
     }
