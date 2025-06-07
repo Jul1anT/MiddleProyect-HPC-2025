@@ -44,7 +44,6 @@ int main(int argc, char **argv) {
         }
     }
     else if(mode == "prob") {
-        // Probability calculation mode
         int trials = 100;
         double prob = calculate_percolation_probability(L, p, trials, gen);
         std::cout << "= Percolation probability for p=" << p << ", L=" << L << ": " << prob << "\n";
@@ -53,11 +52,9 @@ int main(int argc, char **argv) {
         std::cout << "= Average percolating cluster size: " << avg_size << "\n";
     }
     else if(mode == "study") {
-        // Complete probability study
         std::vector<double> probabilities;
         std::vector<double> percolation_probs;
         
-        // Study probabilities from 0.0 to 1.0
         for(double test_p = 0.0; test_p <= 1.0; test_p += 0.05) {
             int trials = 50; // Reduced for faster execution
             double perc_prob = calculate_percolation_probability(L, test_p, trials, gen);
