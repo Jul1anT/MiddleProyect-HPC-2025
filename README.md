@@ -15,8 +15,6 @@ percolation_project/
 ├── include/
 │   └── percolation.h      # Declaraciones de funciones
 ├── data/
-│   ├── results/           # Archivos de salida
-│   └── input/             # Archivos de entrada (si es necesario)
 ├── scripts/
 │   └── plot_results.gnu   # Script de Gnuplot para visualización
 ├── docs/
@@ -123,10 +121,10 @@ Para el estudio de percolación:
 
 ## Archivos de Salida
 
-- `data/results/matrix_data.txt` - Datos de la matriz para visualización
-- `data/results/probability_study.txt` - Resultados del estudio de probabilidades
-- `data/results/percolation_plot.png` - Gráfico de probabilidades
-- `data/results/matrix_plot.png` - Visualización de la matriz
+- `data/matrix_data.txt` - Datos de la matriz para visualización
+- `data/probability_study.txt` - Resultados del estudio de probabilidades
+- `data/percolation_plot.png` - Gráfico de probabilidades
+- `data/matrix_plot.png` - Visualización de la matriz
 
 ## Ejemplo de Uso Completo
 

@@ -26,31 +26,31 @@ int main(int argc, char **argv) {
         auto id_matrix = Hoshen_Kopelman(matrix, L);
         
         // Save matrix data for visualization
-        save_matrix_data(id_matrix, L, "data/results/matrix_data.txt");
+        save_matrix_data(id_matrix, L, "data/matrix_data.txt");
         
         // Check if percolating and print results
         auto result = check_if_percolant(id_matrix, L);
         
         if(result[0] == 1) {
-            std::cout << "System percolates!\n";
+            std::cout << "= System percolates!\n";
             auto stats = calculate_cluster_statistics(id_matrix, L);
-            std::cout << "Average cluster size: " << stats.first << "\n";
-            std::cout << "Standard deviation: " << stats.second << "\n";
+            std::cout << "= Average cluster size: " << stats.first << "\n";
+            std::cout << "= Standard deviation: " << stats.second << "\n";
             
-            std::cout << "Percolating cluster sizes:\n";
+            std::cout << "= Percolating cluster sizes: ";
             print_sizes(id_matrix, L);
         } else {
-            std::cout << "System does not percolate.\n";
+            std::cout << "= System does not percolate.\n";
         }
     }
     else if(mode == "prob") {
         // Probability calculation mode
         int trials = 100;
         double prob = calculate_percolation_probability(L, p, trials, gen);
-        std::cout << "Percolation probability for p=" << p << ", L=" << L << ": " << prob << "\n";
+        std::cout << "= Percolation probability for p=" << p << ", L=" << L << ": " << prob << "\n";
         
         double avg_size = calculate_average_cluster_size(L, p, trials, gen);
-        std::cout << "Average percolating cluster size: " << avg_size << "\n";
+        std::cout << "= Average percolating cluster size: " << avg_size << "\n";
     }
     else if(mode == "study") {
         // Complete probability study
@@ -65,15 +65,15 @@ int main(int argc, char **argv) {
             probabilities.push_back(test_p);
             percolation_probs.push_back(perc_prob);
             
-            std::cout << "p=" << test_p << ", Percolation probability=" << perc_prob << "\n";
+            std::cout << "= p=" << test_p << ", Percolation probability=" << perc_prob << "\n";
         }
         
         // Save results
         save_probability_results(probabilities, percolation_probs, "data/results/probability_study.txt");
-        std::cout << "Results saved to data/results/probability_study.txt\n";
+        std::cout << "= Results saved to data/results/probability_study.txt\n";
     }
     else {
-        std::cout << "Unknown mode: " << mode << "\n";
+        std::cout << "= Unknown mode: " << mode << "\n";
         return 1;
     }
     
