@@ -1,6 +1,7 @@
-#include "../include/percolation.h"
+#include "percolation.h"
 #include <fstream>
 #include <numeric>
+#include <algorithm>
 
 double calculate_percolation_probability(int const L, double const p, int const trials, std::mt19937 &gen) {
     int percolating_count = 0;
@@ -16,27 +17,6 @@ double calculate_percolation_probability(int const L, double const p, int const 
     }
     
     return static_cast<double>(percolating_count) / trials;
-}
-
-double calculate_average_cluster_size(int const L, double const p, int const trials, std::mt19937 &gen) {
-    double total_size = 0.0;
-    int percolating_count = 0;
-    
-    for(int trial = 0; trial < trials; trial++) {
-        auto matrix = fill_matrix(L, p, gen);
-        auto id_matrix = Hoshen_Kopelman(matrix, L);
-        auto result = check_if_percolant(id_matrix, L);
-        
-        if(result[0] == 1) {
-            auto sizes = cluster_sizes(id_matrix, L);
-            for(auto size : sizes) {
-                total_size += size;
-                percolating_count++;
-            }
-        }
-    }
-    
-    return percolating_count > 0 ? total_size / percolating_count : 0.0;
 }
 
 std::pair<double, double> calculate_cluster_statistics(std::vector<std::vector<int>> const & matrix, int const L) {
@@ -57,11 +37,11 @@ std::pair<double, double> calculate_cluster_statistics(std::vector<std::vector<i
         return std::make_pair(0.0, 0.0);
     }
     
-    // Calculate mean
+    // Calcular promedio
     double sum = std::accumulate(element_sizes.begin(), element_sizes.end(), 0.0);
     double mean = sum / element_sizes.size();
     
-    // Calculate standard deviation
+    // Calcular desviación estándar
     double variance = 0.0;
     for(auto size : element_sizes) {
         variance += std::pow(size - mean, 2);

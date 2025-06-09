@@ -11,7 +11,7 @@ percolation_project/
 ├── src/
 │   ├── main.cpp           # Programa principal
 │   ├── percolation.cpp    # Funciones de percolación y Hoshen-Kopelman
-│   └── statistics.cpp     # Funciones estadísticas
+│   └── statistic.cpp     # Funciones estadísticas
 ├── include/
 │   └── percolation.h      # Declaraciones de funciones
 ├── data/

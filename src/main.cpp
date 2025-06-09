@@ -1,7 +1,8 @@
-#include "../include/percolation.h"
+#include "percolation.h"
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <cstdlib>
 
 int main(int argc, char **argv) {
     if(argc < 3) {

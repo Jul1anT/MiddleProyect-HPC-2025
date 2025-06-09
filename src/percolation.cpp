@@ -1,5 +1,9 @@
-#include "../include/percolation.h"
+#include "percolation.h"
 #include <fstream>
+#include <functional>
+#include <random>
+#include <iostream>
+#include <unordered_map>
 
 std::vector<std::vector<int>> fill_matrix(int const L, double const p, std::mt19937 &gen) {
     std::uniform_real_distribution<> dis(0.0, 1.0);
@@ -15,63 +19,73 @@ std::vector<std::vector<int>> fill_matrix(int const L, double const p, std::mt19
 }
 
 std::vector<std::vector<int>> Hoshen_Kopelman(std::vector<std::vector<int>> matrix, int const L) {
-    int id_label = 2;
+    std::unordered_map<int, int> parent;
+    std::unordered_map<int, int> rank;
+    int id_label = 1;  // ← Cambiar de 2 a 1
     
-    // First row, first element
-    if (matrix[0][0] != 0) {
-        matrix[0][0] = id_label;
-    }
-    
-    // First row
-    for(int jj = 1; jj < L; jj++) {
-        if (matrix[0][jj] != 0) {
-            if (matrix[0][jj-1] != 0) {
-                matrix[0][jj] = matrix[0][jj-1];
-            } else {
-                id_label++;
-                matrix[0][jj] = id_label;
-            }
+    std::function<int(int)> find = [&](int x) -> int {
+        if (parent.find(x) == parent.end()) {
+            parent[x] = x;  // Inicializar si no existe
+            rank[x] = 0;
         }
-    }
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]);
+        }
+        return parent[x];
+    };
     
-    // Rest of the matrix
-    for(int ii = 1; ii < L; ii++) {
+    auto unite = [&](int x, int y) -> void {
+        int px = find(x);
+        int py = find(y);
+        if (px == py) return;
+        
+        if (rank[px] < rank[py]) {
+            parent[px] = py;
+        } else if (rank[px] > rank[py]) {
+            parent[py] = px;
+        } else {
+            parent[py] = px;
+            rank[px]++;
+        }
+    };
+    
+    for(int ii = 0; ii < L; ii++) {
         for(int jj = 0; jj < L; jj++) {
             if (matrix[ii][jj] != 0) {
-                if (jj == 0) {
-                    if (matrix[ii-1][0] != 0) {
-                        matrix[ii][0] = matrix[ii-1][0];
-                    } else {
-                        id_label++;
-                        matrix[ii][0] = id_label;
-                    }
+                std::vector<int> neighbors;
+                
+                if (ii > 0 && matrix[ii-1][jj] != 0) {
+                    neighbors.push_back(matrix[ii-1][jj]);
+                }
+                
+                if (jj > 0 && matrix[ii][jj-1] != 0) {
+                    neighbors.push_back(matrix[ii][jj-1]);
+                }
+                
+                if (neighbors.empty()) {
+                    matrix[ii][jj] = id_label;
+                    parent[id_label] = id_label;
+                    rank[id_label] = 0;
+                    id_label++;
                 } else {
-                    if ((matrix[ii-1][jj] == 0) && (matrix[ii][jj-1] == 0)) {
-                        id_label++;
-                        matrix[ii][jj] = id_label;
-                    } else if ((matrix[ii-1][jj] == 0) && (matrix[ii][jj-1] != 0)) {
-                        matrix[ii][jj] = matrix[ii][jj-1];
-                    } else if ((matrix[ii-1][jj] != 0) && (matrix[ii][jj-1] == 0)) {
-                        matrix[ii][jj] = matrix[ii-1][jj];
-                    } else if ((matrix[ii-1][jj] != 0) && (matrix[ii][jj-1] != 0)) {
-                        merge_clusters(matrix, L, matrix[ii][jj-1], matrix[ii-1][jj]);
-                        matrix[ii][jj] = matrix[ii-1][jj];
+                    matrix[ii][jj] = neighbors[0];
+                    
+                    for (size_t k = 1; k < neighbors.size(); k++) {
+                        unite(neighbors[0], neighbors[k]);
                     }
                 }
             }
         }
     }
-    return matrix;
-}
-
-std::vector<std::vector<int>> merge_clusters(std::vector<std::vector<int>> & matrix, int const L, int const id_toe, int const id_tor) {
-    for(int ii = 0; ii < L; ++ii) {
-        for(int jj = 0; jj < L; ++jj) {
-            if (matrix[ii][jj] == id_toe) {
-                matrix[ii][jj] = id_tor;
+    
+    for(int ii = 0; ii < L; ii++) {
+        for(int jj = 0; jj < L; jj++) {
+            if (matrix[ii][jj] != 0) {
+                matrix[ii][jj] = find(matrix[ii][jj]);
             }
         }
     }
+    
     return matrix;
 }
 
