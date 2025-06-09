@@ -12,9 +12,9 @@ percolation_project/
 │   ├── main.cpp           # Programa principal
 │   ├── percolation.cpp    # Funciones de percolación y Hoshen-Kopelman
 │   └── statistic.cpp     # Funciones estadísticas
-├── include/
 │   └── percolation.h      # Declaraciones de funciones
 ├── data/
+│   └── ...
 ├── scripts/
 │   └── plot_results.gnu   # Script de Gnuplot para visualización
 ├── docs/
@@ -26,12 +26,6 @@ percolation_project/
 ## Compilación
 
 Para compilar el proyecto:
-
-```bash
-make all
-```
-
-O simplemente:
 
 ```bash
 make
@@ -52,28 +46,12 @@ Ejemplo:
 ./percolation 20 0.6
 ```
 
-### Cálculo de Probabilidad de Percolación
-
-```bash
-./percolation <L> <p> prob
-```
-
-### Estudio Completo de Probabilidades
-
-```bash
-./percolation <L> <p> study
-```
-
-## Targets del Makefile
+<!-- ## Targets del Makefile
 
 - `make all` - Compila el proyecto
-- `make run` - Ejecuta una simulación ejemplo (L=20, p=0.6)
-- `make prob` - Calcula probabilidad de percolación
-- `make study` - Ejecuta estudio completo de probabilidades
 - `make test` - Ejecuta pruebas básicas
 - `make plot` - Genera gráficos con gnuplot
-- `make clean` - Limpia archivos de compilación
-- `make help` - Muestra ayuda
+- `make clean` - Limpia archivos de compilación -->
 
 ## Algoritmo
 
@@ -94,11 +72,11 @@ Un sistema percola si existe al menos un cluster que conecta bordes opuestos:
 
 ## Análisis Estadístico
 
-El proyecto calcula:
+<!-- El proyecto calcula:
 
 - **Probabilidad de percolación**: P(p,L) en función de p y L
 - **Tamaño promedio de clusters percolantes**: s(p,L)
-- **Desviación estándar** de los tamaños de clusters
+- **Desviación estándar** de los tamaños de clusters -->
 
 ## Visualización
 
@@ -109,22 +87,14 @@ make plot
 ```
 
 Esto genera:
-- Gráfico de probabilidad de percolación vs probabilidad de sitio
-- Visualización de la matriz de clusters
+...
 
 ## Parámetros Recomendados
-
-Para el estudio de percolación:
-- **L**: {32, 64, 128, 256, 512}
-- **p**: [0.0, 1.0] con pasos de 0.05
-- **Ensayos**: Mínimo 10 por configuración para estadísticas confiables
+...
 
 ## Archivos de Salida
+...
 
-- `data/matrix_data.txt` - Datos de la matriz para visualización
-- `data/probability_study.txt` - Resultados del estudio de probabilidades
-- `data/percolation_plot.png` - Gráfico de probabilidades
-- `data/matrix_plot.png` - Visualización de la matriz
 
 ## Ejemplo de Uso Completo
 
@@ -135,11 +105,7 @@ make
 # Simulación individual
 ./percolation 50 0.59
 
-# Estudio completo
-make study
-
-# Generar gráficos
-make plot
+...
 
 # Ejecutar pruebas
 make test
@@ -147,17 +113,17 @@ make test
 
 ## Notas Técnicas
 
-- El proyecto usa C++17 con optimización -O2
+- El proyecto usa C++17 con optimización -O3
 - Se incluye manejo de memoria automático con std::vector
-- Generador de números aleatorios Mersenne Twister
+- Generador de números aleatorios ...
 - Compatible con sistemas Unix/Linux
 
 ## Dependencias
 
-- Compilador C++ compatible con C++17 (g++, clang++)
+- Compilador C++ compatible con C++17 (g++)
 - Gnuplot (opcional, para visualización)
 - Make
 
 ## Autor
 
-Proyecto desarrollado para la clase de IntroSciHPC - Simulación de Percolación 2D
+...
