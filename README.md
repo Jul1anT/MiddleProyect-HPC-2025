@@ -70,14 +70,6 @@ Un sistema percola si existe al menos un cluster que conecta bordes opuestos:
 - **Percolación horizontal**: Cluster que conecta columna izquierda con derecha
 - **Percolación vertical**: Cluster que conecta fila superior con inferior
 
-## Análisis Estadístico
-
-<!-- El proyecto calcula:
-
-- **Probabilidad de percolación**: P(p,L) en función de p y L
-- **Tamaño promedio de clusters percolantes**: s(p,L)
-- **Desviación estándar** de los tamaños de clusters -->
-
 ## Visualización
 
 Los resultados se pueden visualizar usando:
