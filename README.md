@@ -81,7 +81,7 @@ make plot
 Esto genera:
 ...
 
-## Parámetros Recomendados
+## Parámetros
 ...
 
 ## Archivos de Salida
