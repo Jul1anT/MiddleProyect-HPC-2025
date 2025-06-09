@@ -6,7 +6,7 @@ all: percolation.x
 percolation.x: $(OBJECTS)
 	g++ -std=c++17 -O3 -fsanitize=undefined,leak,address $^ -o $@
 
-%src/.o: src/%.cpp
+src/%.o: src/%.cpp
 	g++ -std=c++17 -O3 -fsanitize=undefined,leak,address $< -c -Isrc -o $@
 
 # Generate probability study data
@@ -30,4 +30,4 @@ study: data/probability_study.txt
 plot: data/percolation_plot.png
 
 clean:
-	rm -f *.o *.x data/*.txt data/*.png
+	rm -f src/*.o *.x data/*.txt data/*.png
