@@ -1,6 +1,8 @@
 \documentclass[10pt,twocolumn]{article}
+\usepackage[spanish]{babel}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{microtype}
 
 \title{Estudio de percolación 2D}
 \author{Murillo barra Espitia Jaime, Rodríguez P. Nicolás, Torres Julián} 
@@ -8,7 +10,7 @@
 \begin{document}
 \maketitle
 
-\subsection*{Abstract}
+\section{Resumen}
     Se simuló el llenado aleatorio de una malla bidimensional de tamaño $L\times L$para estudiar la percolación de sitio. Para generar la malla se
     utilizó un vector de vectores, y sus elementos se ocuparon con una distribución aleatoria uniforme con rango entre 0.0 y 1.0.
     Un sitio de la matriz se ocupa si su número aleatorio correspondiente es menor o igual a la probabilidad de llenado $p$.
@@ -19,6 +21,29 @@
     $s(p, L)$ y la probabilidad $P(p, L)$ de que exista un cluster percolante para distintos valores de $p$ y $L$.
 
 \section{Introducción}
+    La teoría de percolación es una rama fundamental de la física estadística que estudia el comportamiento de sistemas aleatorios 
+    conectados, con aplicaciones que van desde la propagación de fluidos en medios porosos hasta la transmisión de enfermedades en redes 
+    complejas \cite{stauffer1994introduction}. El concepto central de percolación se basa en determinar si existe un 
+    camino conectado que atraviese completamente un sistema aleatorio, fenómeno conocido como transición de percolación.\\
+
+    En sistemas bidimensionales, la percolación consiste en ocupar aleatoriamente los lugares de una red regular con probabilidad $p$, 
+    donde cada sitio puede estar ocupado (1) o (0). Los sitios ocupados que son vecinos inmediatos (conectados en cruz) forman clusters 
+    conectados. El sistema presenta percolación cuando existe al menos un cluster que conecta bordes opuestos de la red, ya sea horizontal 
+    o verticalmente.\\
+
+    Uno de los aspectos más importantes de la percolación es la existencia de un umbral crítico $p_c$, donde ocurre una transición de fase. 
+    Para $p < p_c$, típicamente solo existen clusters finitos, mientras que para $p > p_c$ aparece un cluster infinito que abarca todo el 
+    sistema. En redes cuadradas bidimensionales, el valor crítico teórico es $p_c = 0.5927...$.\\
+
+    El estudio computacional de la percolación requiere algoritmos eficientes para identificar y caracterizar clusters conectados. El 
+    algoritmo de Hoshen-Kopelman \cite{hoshen1976percolation} es particularmente útil para este propósito, ya que permite identificar 
+    clusters en una sola pasada sobre la red utilizando técnicas de Union-Find optimizadas.\\
+
+    En este trabajo, implementamos una simulación computacional de percolación de sitio en redes cuadradas bidimensionales de diferentes
+    tamaños ($L \times L$), utilizando el algoritmo de Hoshen-Kopelman para identificar clusters conectados. Nuestro objetivo es calcular la 
+    probabilidad de percolación $P(p,L)$ y caracterizar estadísticamente el tamaño de los clusters percolantes para diferentes valores de la 
+    probabilidad de ocupación $p$ y tamaños de sistema $L$.\\
+
     
 \section{El problema} 
     
@@ -64,4 +89,18 @@
 \section{Resultados} 
    bubub
     
+   \section{Referencias}
+   \begin{thebibliography}{99}
+   
+   \bibitem{stauffer1994introduction}
+   Stauffer, D., \& Aharony, A. (1994). \textit{Introduction to percolation theory}. CRC press.
+   
+   \bibitem{hoshen1976percolation}
+   Hoshen, J., \& Kopelman, R. (1976). Percolation and cluster distribution. I. Cluster multiple labeling technique and critical 
+   concentration algorithm. \textit{Physical Review B}, 14(8), 3438.
+   
+   \end{thebibliography}
+   
+
+
 \end{document}
