@@ -4,10 +4,10 @@ OBJECTS = $(SOURCES:src/%.cpp=src/%.o)
 all: percolation.x
 
 percolation.x: $(OBJECTS)
-	g++ -std=c++17 -O3 -fsanitize=undefined,leak,address $^ -o $@
+	g++ -std=c++17 -O2 -fsanitize=undefined,leak,address $^ -o $@
 
 src/%.o: src/%.cpp src/percolation.h
-	g++ -std=c++17 -O3 -fsanitize=undefined,leak,address $< -c -Isrc -o $@
+	g++ -std=c++17 -O2 -fsanitize=undefined,leak,address $< -c -Isrc -o $@
 
 test.x: src/test.cpp src/percolation.cpp src/statistic.cpp src/percolation.h
 	g++ -std=c++17 -O3 -fsanitize=undefined,leak,address src/test.cpp src/percolation.cpp src/statistic.cpp -o $@ -Isrc

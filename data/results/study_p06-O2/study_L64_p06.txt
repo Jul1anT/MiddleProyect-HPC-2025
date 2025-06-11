@@ -1,0 +1,2 @@
+# L	p	Percolation_Prob	Avg_Cluster_Size	Std_Dev	Trials	Time_ms
+64	0.6	0.8	1413.32	392.794	100	1095
