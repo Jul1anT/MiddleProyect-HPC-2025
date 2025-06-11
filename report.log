@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024 on Slackware) (preloaded format=pdflatex 2024.11.17)  11 JUN 2025 08:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024 on Slackware) (preloaded format=pdflatex 2024.11.17)  11 JUN 2025 09:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -98,8 +98,8 @@ File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count269
 \l__pdf_internal_box=\box54
 ) (./report.aux
-LaTeX Info: Redefining \. on input line 12.
-LaTeX Info: Redefining \% on input line 12.
+LaTeX Info: Redefining \. on input line 10.
+LaTeX Info: Redefining \% on input line 10.
 )
 \openout1 = `report.aux'.
 
@@ -183,6 +183,11 @@ Underfull \hbox (badness 1558) in paragraph at lines 34--37
  []
 
 
+Underfull \hbox (badness 1466) in paragraph at lines 34--37
+\OML/cmm/m/it/10 p[]$\OT1/cmr/m/n/10 (+20) , don-de ocu-rre una transici^^Son de fa-se. Pa-ra
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 34--37
 
  []
@@ -202,25 +207,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--41
 
  []
 
-
-Underfull \hbox (badness 1137) in paragraph at lines 42--46
-\OT1/cmr/m/n/10 (+20) compu-tacio-nal de per-co-la-ci^^Son de si-tio en re-des
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 42--46
-
- []
-
-
-Underfull \vbox (badness 3849) has occurred while \output is active []
-
- [1{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+[1{/usr/share/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 50--52
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 53--55
 
+ []
+
+
+Underfull \hbox (badness 1472) in paragraph at lines 56--58
+[]$\OML/cmm/m/it/10 check[]if[]pecolant\OT1/cmr/m/n/10 (+20) (\OML/cmm/m/it/10 matrix; L\OT1/cmr/m/n/10 (+20) ) :$ Ve-ri-fi-ca si hay
  []
 
 
@@ -229,8 +231,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 56--58
  []
 
 
-Underfull \hbox (badness 1472) in paragraph at lines 59--61
-[]$\OML/cmm/m/it/10 check[]if[]pecolant\OT1/cmr/m/n/10 (+20) (\OML/cmm/m/it/10 matrix; L\OT1/cmr/m/n/10 (+20) ) :$ Ve-ri-fi-ca si hay
+Underfull \hbox (badness 1490) in paragraph at lines 59--61
+[]$\OML/cmm/m/it/10 count\OT1/cmr/m/n/10 (+20) (\OML/cmm/m/it/10 matrix; L; idx\OT1/cmr/m/n/10 (+20) ) :$ Cuen-ta el n^^Sume-ro de
  []
 
 
@@ -239,58 +241,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--61
  []
 
 
-Underfull \hbox (badness 1490) in paragraph at lines 62--64
-[]$\OML/cmm/m/it/10 count\OT1/cmr/m/n/10 (+20) (\OML/cmm/m/it/10 matrix; L; idx\OT1/cmr/m/n/10 (+20) ) :$ Cuen-ta el n^^Sume-ro de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--64
-
- []
-
-
-Underfull \hbox (badness 1902) in paragraph at lines 65--69
+Underfull \hbox (badness 1902) in paragraph at lines 62--66
 []\OT1/cmr/m/n/10 (+20) En el c^^Salcu-lo de las es-tad^^S^^Psti-cas se em-plea-
  []
 
 
-Underfull \hbox (badness 2573) in paragraph at lines 65--69
+Underfull \hbox (badness 2573) in paragraph at lines 62--66
 \OML/cmm/m/it/10 print[]matrix\OT1/cmr/m/n/10 (+20) (\OML/cmm/m/it/10 matrix; L\OT1/cmr/m/n/10 (+20) )$ y $\OML/cmm/m/it/10 print[]sizes\OT1/cmr/m/n/10 (+20) (\OML/cmm/m/it/10 matrix; L\OT1/cmr/m/n/10 (+20) )$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 65--69
-
  []
 
 <data/64 0.5.png, id=13, 385.44pt x 289.08pt>
 File: data/64 0.5.png Graphic file (type png)
 <use data/64 0.5.png>
-Package pdftex.def Info: data/64 0.5.png  used on input line 77.
+Package pdftex.def Info: data/64 0.5.png  used on input line 74.
 (pdftex.def)             Requested size: 256.0748pt x 192.05493pt.
 
-Overfull \hbox (26.5748pt too wide) in paragraph at lines 77--78
+Overfull \hbox (26.5748pt too wide) in paragraph at lines 74--75
  [][] 
  []
 
 <data/merged 64 0.5.png, id=14, 385.44pt x 289.08pt>
 File: data/merged 64 0.5.png Graphic file (type png)
 <use data/merged 64 0.5.png>
-Package pdftex.def Info: data/merged 64 0.5.png  used on input line 84.
+Package pdftex.def Info: data/merged 64 0.5.png  used on input line 81.
 (pdftex.def)             Requested size: 256.0748pt x 192.05493pt.
 
-Overfull \hbox (26.5748pt too wide) in paragraph at lines 84--85
+Overfull \hbox (26.5748pt too wide) in paragraph at lines 81--82
  [][] 
  []
 
+[2 <./data/64 0.5.png (PNG copy)>] [3
 
-Underfull \vbox (badness 1264) has occurred while \output is active []
-
- [2 <./data/64 0.5.png (PNG copy)> <./data/merged 64 0.5.png (PNG copy)>] [3
-
-] (./report.aux
-LaTeX Info: Redefining \. on input line 12.
-LaTeX Info: Redefining \% on input line 12.
+ <./data/merged 64 0.5.png (PNG copy)>] (./report.aux
+LaTeX Info: Redefining \. on input line 10.
+LaTeX Info: Redefining \% on input line 10.
 )
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -298,18 +282,18 @@ L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5145 strings out of 474104
- 83945 string characters out of 5749998
+ 5155 strings out of 474104
+ 84054 string characters out of 5749998
  1939493 words of memory out of 5000000
- 27439 multiletter control sequences out of 15000+600000
- 564219 words of font info for 88 fonts, out of 8000000 for 9000
+ 27441 multiletter control sequences out of 15000+600000
+ 564746 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,9n,65p,1042b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on report.pdf (3 pages, 184260 bytes).
+Output written on report.pdf (3 pages, 185599 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  32 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 20491 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 22539 words of extra memory for PDF output out of 24883 (max. 10000000)
 

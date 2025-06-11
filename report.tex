@@ -38,14 +38,11 @@
     El estudio computacional de la percolación requiere algoritmos eficientes para identificar y caracterizar clusters conectados. El 
     algoritmo de Hoshen-Kopelman \cite{hoshen1976percolation} es particularmente útil para este propósito, ya que permite identificar 
     clusters en una sola pasada sobre la red utilizando técnicas de Union-Find optimizadas.\\
-
-    En este trabajo, implementamos una simulación computacional de percolación de sitio en redes cuadradas bidimensionales de diferentes
-    tamaños ($L \times L$), utilizando el algoritmo de Hoshen-Kopelman para identificar clusters conectados. Nuestro objetivo es calcular la 
-    probabilidad de percolación $P(p,L)$ y caracterizar estadísticamente el tamaño de los clusters percolantes para diferentes valores de la 
-    probabilidad de ocupación $p$ y tamaños de sistema $L$.\\
-
     
-\section{El problema} 
+\section{El problema}
+El objetivo principal de este informe es explorar cómo varía la probabilidad de que exista un cluster percolante, 
+\( P(p, L) \), y el tamaño promedio del mayor cluster percolante, \( g(p, L) \), en función de la probabilidad de llenado \( p \) y del tamaño del sistema \( L \). Se espera observar que existe una probabilidad crítica \( p_c \), a partir de la cual, en promedio, comienza a existir percolación en el sistema. Además, se analizará cómo el tamaño del sistema afecta la aparición de percolación y el tamaño de los clusters.
+
     
 \section{El código}
     Estas son las funciones principales usadas para el estudio:
@@ -65,42 +62,57 @@
     En el cálculo de las estadísticas se emplearon las funciones de $statistic.cpp$. Las funciones $print\_matrix(matrix, L)$
     y $print\_sizes(matrix, L)$ fueron usadas en etapas tempranas del código para verificar su funcionamiento. La primera 
     imprime las coordenadas de de cada sitio junto con su etiqueta, y la segunda imprime los tamaños de los clusters
-    percolantes.\\ 
+    percolantes.
 
 \section{Pruebas}
     Como primer acercamiento al problema, se usó las función $print\_matrix(matrix, L)$ para visualizar los espacios ocupados
     en la matriz. La figura \ref{64 0.5} muestra en amarillo los sitios ocupados con una probabilidad $p = 0.5$ de una matriz
     de tamaño $64\times 64$, mientras que la figura \ref{merged 64 0.5} muestra otra prueba con los sitios ocupados agrupados
     en clusters de diferentes colores. En este caso específico, no hay percolación. 
-   \begin{figure}[H]
+   \begin{figure}[htbp]
     \centering
     \includegraphics[width=9cm]{data/64 0.5.png}
     \caption{Matriz $64\times 64$ con $p = 0.5$.}
     \label{64 0.5} 
    \end{figure} 
 
-   \begin{figure}[H]
+   \begin{figure}[htbp]
     \centering
     \includegraphics[width=9cm]{data/merged 64 0.5.png}
     \caption{Matriz $64\times 64$ con $p = 0.5$ con los sitios ocupados agrupados en clusters.}
     \label{merged 64 0.5} 
    \end{figure} 
 
-\section{Resultados} 
-   bubub
+\section{Resultados}
+
+\subsection*{Probabilidad Crítica}
+\begin{itemize}
+    \item Para $L \to \infty$, existe una probabilidad crítica $p_c$ donde $P(p_c, \infty) = 0.5$.
+    \item Para sistemas finitos, la transición es suave y se desplaza ligeramente.
+    \item El punto crítico teórico para percolación de sitios 2D es $p_c \approx 0.5927$.
+\end{itemize}
+
+\subsection*{Efectos de Tamaño Finito}
+\begin{itemize}
+    \item Sistemas más pequeños muestran transiciones más suaves.
+    \item La probabilidad crítica aparente se desplaza con el tamaño del sistema.
+    \item La variabilidad estadística es mayor en sistemas pequeños.
+\end{itemize}
+   
+\section{Conclusión}
+   A través de simulaciones computacionales, se logró observar el fenómeno de percolación en redes bidimensionales, caracterizado por la aparición de un cluster conectado a partir de un umbral crítico de ocupación \( p_c \). La probabilidad de percolación y el tamaño promedio del cluster percolante muestran un comportamiento típico de transición de fase, dependiente del tamaño del sistema. Estos resultados coinciden con lo esperado teóricamente y validan la implementación computacional realizada.
     
-   \section{Referencias}
-   \begin{thebibliography}{99}
-   
-   \bibitem{stauffer1994introduction}
-   Stauffer, D., \& Aharony, A. (1994). \textit{Introduction to percolation theory}. CRC press.
-   
-   \bibitem{hoshen1976percolation}
-   Hoshen, J., \& Kopelman, R. (1976). Percolation and cluster distribution. I. Cluster multiple labeling technique and critical 
-   concentration algorithm. \textit{Physical Review B}, 14(8), 3438.
-   
-   \end{thebibliography}
-   
+\begin{thebibliography}{99}
+
+\bibitem{stauffer1994introduction}
+Stauffer, D., \& Aharony, A. (1994). \textit{Introduction to percolation theory}. CRC press.
+
+\bibitem{hoshen1976percolation}
+Hoshen, J., \& Kopelman, R. (1976). Percolation and cluster distribution. I. Cluster multiple labeling technique and critical 
+concentration algorithm. \textit{Physical Review B}, 14(8), 3438.
+
+\end{thebibliography}
+
 
 
 \end{document}

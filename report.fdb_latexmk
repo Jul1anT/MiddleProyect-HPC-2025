@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1749648717.93733 "/home/jutorresz/MiddleProyect-HPC-2025/report.tex" "report.pdf" "report" 1749648718.4263 0
-  "/home/jutorresz/MiddleProyect-HPC-2025/report.tex" 1749648717.35584 6674 3b2fbc0f4b57e7c20666c407dffb8c4e ""
+["pdflatex"] 1749650792.60879 "/home/jutorresz/MiddleProyect-HPC-2025/report.tex" "report.pdf" "report" 1749650792.92375 0
+  "/home/jutorresz/MiddleProyect-HPC-2025/report.tex" 1749650792.18773 7510 1933ab24638b342ada7d0e8e868a9ce7 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -49,8 +49,8 @@
   "/usr/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1731884053 8222855 1640869dc6ea554574fb8c58fc134f75 ""
   "data/64 0.5.png" 1749645860.14386 21543 838e86e10561a93c2778b5b95b20bf9c ""
   "data/merged 64 0.5.png" 1749645860.16686 48992 6dc2f1ca995643b8b1ab5189a0661560 ""
-  "report.aux" 1749648718.37786 1548 aa5f3aadcaab720e308dbaf6f2a7a69d "pdflatex"
-  "report.tex" 1749648717.35584 6674 3b2fbc0f4b57e7c20666c407dffb8c4e ""
+  "report.aux" 1749650792.89075 1414 a5ab59576dc099ada456ef188ea827af "pdflatex"
+  "report.tex" 1749650792.18773 7510 1933ab24638b342ada7d0e8e868a9ce7 ""
   (generated)
   "report.aux"
   "report.log"
