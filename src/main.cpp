@@ -15,8 +15,7 @@ void run_full_study(std::mt19937 &gen) {
         p_values.push_back(p);
     }
     // Add additional p values around critical point
-    std::vector<double> extra_p = {0.52, 0.54, 0.56, 0.58, 0.61, 0.62, 0.63, 0.67, 0.68};
-    for (auto p : extra_p) {
+    for (double p = 0.56; p <= 0.64; p += 0.01) {
         p_values.push_back(p);
     }
     
