@@ -31,6 +31,7 @@ void run_full_study(std::mt19937 &gen) {
         std::vector<double> L_probabilities;
         std::vector<double> L_percolation_probs;
         std::vector<double> L_avg_sizes;
+        std::vector<double> L_std_dev;
         std::vector<double> L_times;
         
         for (double p : p_values) {
@@ -48,6 +49,7 @@ void run_full_study(std::mt19937 &gen) {
             L_probabilities.push_back(p);
             L_percolation_probs.push_back(perc_prob);
             L_avg_sizes.push_back(analysis.average_cluster_size);
+            L_std_dev.push_back(analysis.std_deviation);
             L_times.push_back(duration.count());
             
             // Write to profiling report
@@ -66,10 +68,10 @@ void run_full_study(std::mt19937 &gen) {
         // Save results for this L value
         std::string filename = "data/study_L" + std::to_string(L) + ".txt";
         std::ofstream L_file(filename);
-        L_file << "# p\tPercolation_Prob\tAvg_Cluster_Size\tTime_ms\n";
+        L_file << "# p\tPercolation_Prob\tAvg_Cluster_Size\tStd_dev\tTime_ms\n";
         for (size_t i = 0; i < L_probabilities.size(); i++) {
             L_file << L_probabilities[i] << "\t" << L_percolation_probs[i] << "\t" 
-                   << L_avg_sizes[i] << "\t" << L_times[i] << "\n";
+                   << L_avg_sizes[i] << "\t" << L_std_dev[i] << "\t" << L_times[i] << "\n";
         }
         L_file.close();
         std::cout << "  Results saved to " << filename << "\n";
