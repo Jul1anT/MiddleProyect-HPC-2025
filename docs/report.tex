@@ -27,7 +27,7 @@
     camino conectado que atraviese completamente un sistema aleatorio, fenómeno conocido como transición de percolación.\\
 
     En sistemas bidimensionales, la percolación consiste en ocupar aleatoriamente los lugares de una red regular con probabilidad $p$, 
-    donde cada sitio puede estar ocupado (1) o (0). Los sitios ocupados que son vecinos inmediatos (conectados en cruz) forman clusters 
+    donde cada sitio puede estar ocupado (1) o no (0). Los sitios ocupados que son vecinos inmediatos (conectados en cruz) forman clusters 
     conectados. El sistema presenta percolación cuando existe al menos un cluster que conecta bordes opuestos de la red, ya sea horizontal 
     o verticalmente.\\
 
@@ -50,37 +50,37 @@ El objetivo principal de este informe es explorar cómo varía la probabilidad d
     $fill\_matix(L, p, gen):$ Llena la matriz con una distribución uniforme de números entre 0.0 y 1.0. Luego, convierte
     dichos números en 1 si son menores o iguales a $p$. Si no, los convierte en 0.\\ 
 
-    $Hoshen\_Kopelman(matrix, L):$ Recorre la matriz verificando si los sitios ocupados tienen vecinos, de ser así los agrupa
-    y les asigna una etiqueta única.\\
+    $Hoshen\_Kopelman(matrix, L):$ Recorre la matriz de abajo a arriba y de izquierda a derecha, verificando si los sitios ocupados tienen vecinos a la izquierda o abajo: si no tienen vecinos, se les asigna una nueva etiqueta; si tienen solo uno, se les asigna la etiqueta de este vecino; si tienen dos vecinos, se le da prioridad a la etiqueta del vecino que está a la izquierda.
+    La función entrega una matriz de etiquetas indicando a qué cluster pertenece cada elemento. \\
 
     $check\_if\_pecolant(matrix, L):$ Verifica si hay etiquetas que aparezcan tanto en la primera fila como en la última, o
-    en la primera columna como en la última. De ser así, arroja un 1 indicando que hay percolación y la etiqueta del cluster.\\
+    en la primera columna como en la última. De ser así, arroja un array con primer elemento 1, indicando que hay percolación y con otros elementos simbolizando la etiqueta del cluster que lo es. La función también verifica que solo se reporten una vez las etiquetas que cumplen esta condición.\\
     
-    $count(matrix, L, idx):$ Cuenta el número de elementos de la matriz que poseen la o las etiquetas mostradas por
+    $count(matrix, L, idx):$ Cuenta el número de elementos en la matriz que poseen la o las etiquetas mostradas por
     $check\_if\_pecolant(matrix, L)$.\\
 
     En el cálculo de las estadísticas se emplearon las funciones de $statistic.cpp$. Las funciones $print\_matrix(matrix, L)$
     y $print\_sizes(matrix, L)$ fueron usadas en etapas tempranas del código para verificar su funcionamiento. La primera 
-    imprime las coordenadas de de cada sitio junto con su etiqueta, y la segunda imprime los tamaños de los clusters
+    imprime las coordenadas de cada sitio junto con su etiqueta, y la segunda imprime los tamaños de los clusters
     percolantes.
 
-\section{Pruebas}
+\section{Pruebas Tempranas}
     Como primer acercamiento al problema, se usó las función $print\_matrix(matrix, L)$ para visualizar los espacios ocupados
-    en la matriz. La figura \ref{64-0.5} muestra en amarillo los sitios ocupados con una probabilidad $p = 0.5$ de una matriz
-    de tamaño $64\times 64$, mientras que la figura \ref{merged 64-0.5} muestra otra prueba con los sitios ocupados agrupados
+    en la matriz. La figura \ref{64 0.5} muestra en amarillo los sitios ocupados con una probabilidad $p = 0.5$ de una matriz
+    de tamaño $64\times 64$, mientras que la figura \ref{merged 64 0.5} muestra otra prueba con los sitios ocupados agrupados
     en clusters de diferentes colores. En este caso específico, no hay percolación. 
    \begin{figure}[htbp]
     \centering
-    \includegraphics[width=9cm]{../data/figures/64-0.5.png}
+    \includegraphics[width=9cm]{./data/64 0.5.png}
     \caption{Matriz $64\times 64$ con $p = 0.5$.}
-    \label{64-0.5} 
+    \label{64 0.5} 
    \end{figure} 
 
    \begin{figure}[htbp]
     \centering
-    \includegraphics[width=9cm]{../data/figures/merged_64-0.5.png}
+    \includegraphics[width=9cm]{./data/merged 64 0.5.png}
     \caption{Matriz $64\times 64$ con $p = 0.5$ con los sitios ocupados agrupados en clusters.}
-    \label{merged 64-0.5} 
+    \label{merged 64 0.5} 
    \end{figure} 
 
 \section{Resultados}
