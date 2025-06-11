@@ -136,14 +136,14 @@ ProbabilityAnalysis run_probability_analysis(double p, int L, int trials) {
         auto stats = calculate_cluster_statistics(id_matrix, L);
         
         if(stats.first > 0) {
-            avg_sizes.push_back(stats.first);
+            avg_sizes.push_back(stats.first/(L*L));
             total_avg_size += stats.first;
             valid_trials++;
         }
     }
     
     if(valid_trials > 0) {
-        analysis.average_cluster_size = total_avg_size / valid_trials;
+        analysis.average_cluster_size = total_avg_size / (valid_trials*L*L);
         
         double variance = 0.0;
         for(auto avg : avg_sizes) {

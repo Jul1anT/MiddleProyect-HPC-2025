@@ -16,7 +16,10 @@ void run_full_study(std::mt19937 &gen) {
     }
     // Add additional p values around critical point
     for (double p = 0.56; p <= 0.64; p += 0.01) {
-        p_values.push_back(p);
+        if(p == 0.6){
+
+        }else
+            p_values.push_back(p);
     }
     
     std::ofstream profiling_report("data/profiling-report.txt");
