@@ -15,7 +15,7 @@ src/%.o: src/%.cpp src/percolation.h
 test.x: src/test.cpp src/percolation.cpp src/statistic.cpp src/percolation.h
     g++ -std=c++17 -O3 -fsanitize=undefined,leak,address src/test.cpp src/percolation.cpp src/statistic.cpp -o $@ -Isrc
 
-.PHONY: all test clean run-single run-prob run-study run-full debug-gdb do-valgrind do-profile
+.PHONY: all test clean run-single run-prob run-study run-full debug-gdb do-valgrind do-profile plots
 
 test: test.x
     @echo "Running tests..."
@@ -63,6 +63,9 @@ percolation_profile.x: $(OBJECTSPRO)
 src/%_pro.o: src/%.cpp src/percolation.h
     g++ -std=c++17 -g -pg -fprofile-filter-files='src.*' $< -c -Isrc -o $@
 
-report: report.tex
+report: docs/report.tex
 	pdflatex $<
 	okular report.pdf
+
+plots: scripts/plot_percolation.gnu data/study_L32.txt data/study_L64.txt data/study_L128.txt data/study_L256.txt data/study_L512.txt
+	gnuplot scripts/plot_percolation.gnu
