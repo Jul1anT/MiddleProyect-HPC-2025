@@ -2,25 +2,23 @@
 
 ## Descripción
 
-Este proyecto implementa una simulación de percolación en 2D utilizando el algoritmo de Hoshen-Kopelman para identificar clusters conectados. El objetivo es estudiar el fenómeno de percolación de sitios en una red cuadrada y calcular probabilidades críticas.
+Este proyecto implementa una simulación de percolación en 2D utilizando el algoritmo de Hoshen-Kopelman para identificar clusters conectados. El objetivo es estudiar el fenómeno de percolación y calcular probabilidades.
 
 ## Estructura del Proyecto
-
 ```
 percolation_project/
 ├── src/
-│   ├── main.cpp           # Programa principal
-│   ├── percolation.cpp    # Funciones de percolación y Hoshen-Kopelman
-│   └── statistic.cpp     # Funciones estadísticas
-│   └── percolation.h      # Declaraciones de funciones
+│   ├── main.cpp             # Programa principal con modos de ejecución
+│   ├── percolation.cpp      # Implementación del algoritmo Hoshen-Kopelman
+│   ├── statistic.cpp        # Funciones de análisis estadístico
+│   ├── percolation.h        # Declaraciones de funciones y estructuras
+│   └── test.cpp             # Suite de pruebas unitarias
 ├── data/
-│   └── ...
-├── scripts/
-│   └── plot_results.gnu   # Script de Gnuplot para visualización
-├── docs/
-│   └── report.pdf         # Documentación del proyecto
-├── Makefile               # Sistema de construcción
-└── README.md              # Este archivo
+│   ├── matrix_data.txt      # Datos de matriz individual (generado)
+│   ├── study_L*.txt         # Resultados por tamaño de sistema (generado)
+│   └── profiling-report.txt # Reporte de rendimiento (generado)
+├── Makefile                 # Sistema de construcción
+└── README.md                # Este archivo
 ```
 
 ## Compilación
