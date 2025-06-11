@@ -128,7 +128,3 @@ El programa calcula múltiples métricas estadísticas:
 - **Generador de números aleatorios eficiente**: std::mt19937 con semilla basada en hardware
 - **Compilación optimizada**: Flags -O3 para máximo rendimiento
 - **Sanitizers**: Detección de errores de memoria y comportamiento indefinido
-
-## Autor
-
-...
